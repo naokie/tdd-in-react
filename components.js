@@ -32,6 +32,11 @@ export class InputArea extends Component {
       text: ''
     }
     this.setText = this.setText.bind(this)
+    this.handleClick = this.handleClick.bind(this)
+  }
+
+  handleClick () {
+    this.props.onSubmit(this.state.text)
   }
 
   setText (event) {
@@ -42,7 +47,7 @@ export class InputArea extends Component {
     return (
       <div>
         <input value={this.state.text} onChange={this.setText} />
-        <button>Add</button>
+        <button onClick={this.handleClick}>Add</button>
       </div>
     )
   }
