@@ -19,7 +19,7 @@ export class BeerListContainer extends Component {
     return (
       <div>
         <InputArea onSubmit={this.addItem} />
-        <BeerList />
+        <BeerList items={this.state.beers} />
       </div>
     )
   }
@@ -58,7 +58,17 @@ InputArea.PropTypes = {
 }
 
 export class BeerList extends Component {
-  render () {
-    return <ul />
+  render() {
+    return this.props.items ?
+      (<ul>
+        {this.props.items.map((item, index) => (
+          <li key={index}>{item}</li>
+        ))}
+      </ul>)
+    : null;
   }
+}
+
+BeerList.PropTypes = {
+  items: React.PropTypes.array.isRequired
 }
