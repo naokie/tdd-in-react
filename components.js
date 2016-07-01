@@ -6,6 +6,7 @@ export class BeerListContainer extends Component {
     this.state = {
       beers: []
     }
+    this.addItem = this.addItem.bind(this)
   }
 
   addItem (name) {
@@ -17,7 +18,7 @@ export class BeerListContainer extends Component {
   render () {
     return (
       <div>
-        <InputArea />
+        <InputArea onSubmit={this.addItem} />
         <BeerList />
       </div>
     )
@@ -26,8 +27,17 @@ export class BeerListContainer extends Component {
 
 export class InputArea extends Component {
   render () {
-    return <input />
+    return (
+      <div>
+        <input />
+        <button>Add</button>
+      </div>
+    )
   }
+}
+
+InputArea.PropTypes = {
+  onSubmit: React.PropTypes.func.isRequired
 }
 
 export class BeerList extends Component {
