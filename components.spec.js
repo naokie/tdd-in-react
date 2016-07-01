@@ -1,7 +1,25 @@
+import React from 'react'
 import { expect } from 'chai'
+import { shallow } from 'enzyme'
+import { BeerListContainer, InputArea, BeerList } from './components'
 
-describe('the environment', () => {
-  it('works, hopefully', () => {
-    expect(true).to.be.true
+describe('BeerListContainer', () => {
+  it('should render InputArea and BeerList', () => {
+    const wrapper = shallow(<BeerListContainer />)
+    expect(wrapper.containsAllMatchingElements([
+      <InputArea />,
+      <BeerList />
+    ])).to.equal(true)
+  })
+
+  it('should start with an empty list', () => {
+    const wrapper = shallow(<BeerListContainer />)
+    expect(wrapper.state('beers')).to.eql([])
+  })
+
+  it('add items to the list', () => {
+    const wrapper = shallow(<BeerListContainer />)
+    wrapper.instance().addItem('Sam Adams')
+    expect(wrapper.state('beers')).to.eql(['Sam Adams'])
   })
 })
